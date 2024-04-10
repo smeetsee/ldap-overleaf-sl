@@ -1,6 +1,6 @@
---- sharelatex_ori/settings.pug	2023-11-07 13:36:10.000000000 +0100
-+++ sharelatex/settings.pug	2024-04-10 19:20:01.907583003 +0200
-@@ -1,32 +1,178 @@
+--- sharelatex_ori/settings.pug	2024-04-10 20:54:56.985209138 +0200
++++ done_4/settings.pug	2024-04-10 20:53:18.563948830 +0200
+@@ -1,36 +1,178 @@
 -extends ../layout-marketing
 +extends ../layout
  
@@ -43,9 +43,13 @@
 -	meta(name="ol-personalAccessTokens", data-type="json" content=personalAccessTokens)
 -	meta(name="ol-emailAddressLimit", data-type="json", content=emailAddressLimit)
 -	meta(name="ol-currentManagedUserAdminEmail" data-type="string" content=currentManagedUserAdminEmail)
+-	meta(name="ol-gitBridgeEnabled" data-type="boolean" content=gitBridgeEnabled)
+-	meta(name="ol-isSaas" data-type="boolean" content=isSaas)
+-	meta(name="ol-memberOfSSOEnabledGroups" data-type="json" content=memberOfSSOEnabledGroups)
  
 -block content
--	main.content.content-alt#settings-page-root
+-	main.content.content-alt#main-content
+-		#settings-page-root
 +
 +
 +							.row
