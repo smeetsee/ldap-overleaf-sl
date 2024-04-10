@@ -1,10 +1,18 @@
-259a260,268
->   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->   if (process.env.OAUTH2_ENABLED === 'true') {
->     webRouter.get('/oauth/redirect', AuthenticationController.oauth2Redirect)
->     webRouter.get('/oauth/callback', AuthenticationController.oauth2Callback)
->     AuthenticationController.addEndpointToLoginWhitelist('/oauth/redirect')
->     AuthenticationController.addEndpointToLoginWhitelist('/oauth/callback')
->   }
->   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-> 
+--- sharelatex_ori/router.js	2023-11-07 13:36:10.000000000 +0100
++++ sharelatex/router.js	2024-04-10 19:20:01.903583077 +0200
+@@ -257,6 +257,15 @@
+   PasswordResetRouter.apply(webRouter, privateApiRouter)
+   StaticPagesRouter.apply(webRouter, privateApiRouter)
+   ContactRouter.apply(webRouter, privateApiRouter)
++  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
++  if (process.env.OAUTH2_ENABLED === 'true') {
++    webRouter.get('/oauth/redirect', AuthenticationController.oauth2Redirect)
++    webRouter.get('/oauth/callback', AuthenticationController.oauth2Callback)
++    AuthenticationController.addEndpointToLoginWhitelist('/oauth/redirect')
++    AuthenticationController.addEndpointToLoginWhitelist('/oauth/callback')
++  }
++  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
++
+   AnalyticsRouter.apply(webRouter, privateApiRouter, publicApiRouter)
+   LinkedFilesRouter.apply(webRouter, privateApiRouter, publicApiRouter)
+   TemplatesRouter.apply(webRouter)

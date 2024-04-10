@@ -1,20 +1,35 @@
-14a15,22
-> 								//- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-> 								//- input.form-control(
-> 								//- 	type='email',
-> 								//- 	name='email',
-> 								//- 	required,
-> 								//- 	placeholder='email@example.com',
-> 								//- 	autofocus="true"
-> 								//- )
-16d23
-< 									type='email',
-21a29
-> 								//- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-36a45,50
-> 							//- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-> 							if process.env.OAUTH2_ENABLED === 'true'
-> 								.form-group.text-center(style="padding-top: 10px")
-> 									a.btn-block.login-btn(href="/oauth/redirect" style='padding-left: 0px')
-> 										| Log in via #{process.env.OAUTH2_PROVIDER || 'OAuth'}
-> 							//- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+--- sharelatex_ori/login.pug	2023-11-07 13:36:10.000000000 +0100
++++ sharelatex/login.pug	2024-04-10 19:20:01.891583297 +0200
+@@ -12,13 +12,21 @@
+ 							input(name='_csrf', type='hidden', value=csrfToken)
+ 							+formMessages()
+ 							.form-group
++								//- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
++								//- input.form-control(
++								//- 	type='email',
++								//- 	name='email',
++								//- 	required,
++								//- 	placeholder='email@example.com',
++								//- 	autofocus="true"
++								//- )
+ 								input.form-control(
+-									type='email',
+ 									name='email',
+ 									required,
+ 									placeholder='email@example.com',
+ 									autofocus="true"
+ 								)
++								//- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ 							.form-group
+ 								input.form-control(
+ 									type='password',
+@@ -34,3 +42,9 @@
+ 									span(data-ol-inflight="idle") #{translate("login")}
+ 									span(hidden data-ol-inflight="pending") #{translate("logging_in")}…
+ 								a.pull-right(href='/user/password/reset') #{translate("forgot_your_password")}?
++							//- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
++							if process.env.OAUTH2_ENABLED === 'true'
++								.form-group.text-center(style="padding-top: 10px")
++									a.btn-block.login-btn(href="/oauth/redirect" style='padding-left: 0px')
++										| Log in via #{process.env.OAUTH2_PROVIDER || 'OAuth'}
++							//- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
