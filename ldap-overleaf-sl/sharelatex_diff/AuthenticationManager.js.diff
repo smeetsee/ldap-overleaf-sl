@@ -27,7 +27,7 @@
 +  },
 +  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 +
-   async authenticate(query, password, auditLog, { skipHIBPCheck = false }) {
+   async authenticate(query, password, auditLog, { enforceHIBPCheck = true }) {
 -    const { user, match } = await AuthenticationManager._checkUserPassword(
 +    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 +    const { user, match } = await AuthenticationManager._checkUserPassword2(
