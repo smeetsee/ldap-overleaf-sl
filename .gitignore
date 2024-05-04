@@ -1,6 +1,7 @@
 # Temporary files
 sharelatex/
 sharelatex_ori/
+ldap-overleaf-sl/sharelatex_ori_5/*
 
 # Compiled Object files
 *.slo
