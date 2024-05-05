@@ -1,6 +1,6 @@
---- sharelatex_ori_5/AuthenticationManager.js	2024-04-10 20:40:45.170715543 +0200
-+++ sharelatex/AuthenticationManager.js	2024-04-10 21:17:47.984676629 +0200
-@@ -17,6 +17,12 @@
+--- sharelatex_ori_5/AuthenticationManager.js	2024-05-05 13:17:43
++++ sharelatex/AuthenticationManager.js	2024-05-05 13:17:36
+@@ -20,6 +20,12 @@
  const DiffHelper = require('../Helpers/DiffHelper')
  const Metrics = require('@overleaf/metrics')
  
@@ -13,7 +13,7 @@
  const BCRYPT_ROUNDS = Settings.security.bcryptRounds || 12
  const BCRYPT_MINOR_VERSION = Settings.security.bcryptMinorVersion || 'a'
  const MAX_SIMILARITY = 0.7
-@@ -111,8 +117,20 @@
+@@ -114,8 +120,20 @@
      return { user, match }
    },
  
@@ -35,8 +35,8 @@
        query,
        password
      )
-@@ -179,6 +197,286 @@
-     return user
+@@ -177,6 +195,286 @@
+     return { user, isPasswordReused }
    },
  
 +
@@ -322,3 +322,11 @@
    validateEmail(email) {
      const parsed = EmailHelper.parseEmail(email)
      if (!parsed) {
+@@ -473,6 +771,7 @@
+     'user',
+     'isPasswordReused',
+   ]),
++  createIfNotFoundAndLogin: callbackify(AuthenticationManager.createIfNotFoundAndLogin),
+   setUserPassword: callbackify(AuthenticationManager.setUserPassword),
+   checkRounds: callbackify(AuthenticationManager.checkRounds),
+   hashPassword: callbackify(AuthenticationManager.hashPassword),
