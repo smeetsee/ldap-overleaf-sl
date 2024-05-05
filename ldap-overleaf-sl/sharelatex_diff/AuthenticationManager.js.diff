@@ -1,5 +1,5 @@
---- sharelatex_ori_5/AuthenticationManager.js	2024-05-05 13:17:43
-+++ sharelatex/AuthenticationManager.js	2024-05-05 13:17:36
+--- sharelatex_ori_5/AuthenticationManager.js	2024-05-05 17:34:24
++++ sharelatex/AuthenticationManager.js	2024-05-05 17:37:51
 @@ -20,6 +20,12 @@
  const DiffHelper = require('../Helpers/DiffHelper')
  const Metrics = require('@overleaf/metrics')
@@ -13,17 +13,27 @@
  const BCRYPT_ROUNDS = Settings.security.bcryptRounds || 12
  const BCRYPT_MINOR_VERSION = Settings.security.bcryptMinorVersion || 'a'
  const MAX_SIMILARITY = 0.7
-@@ -114,8 +120,20 @@
+@@ -114,8 +120,30 @@
      return { user, match }
    },
  
 +  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-+  _checkUserPassword2(query, password, callback) {
-+    // leave original _checkUserPassword untouched, because it will be called by
-+    // setUserPasswordInV2 (e.g. UserRegistrationHandler.js )
-+    User.findOne(query, (error, user) => {
-+      AuthenticationManager.authUserObj(error, user, query, password, callback)
-+    })
++  _checkUserPassword2(query, password) {
++    return new Promise((resolve, reject) => {
++      User.findOne(query, (error, user) => {
++        if (error) {
++          reject(error);
++        } else {
++          AuthenticationManager.authUserObj(error, user, query, password, (err, result, match) => {
++            if (err) {
++              reject(err);
++            } else {
++              resolve({ user: result, match: match });
++            }
++          });
++        }
++      });
++    });
 +  },
 +  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 +
@@ -35,7 +45,7 @@
        query,
        password
      )
-@@ -177,6 +195,286 @@
+@@ -177,6 +205,286 @@
      return { user, isPasswordReused }
    },
  
@@ -322,7 +332,7 @@
    validateEmail(email) {
      const parsed = EmailHelper.parseEmail(email)
      if (!parsed) {
-@@ -473,6 +771,7 @@
+@@ -473,6 +781,7 @@
      'user',
      'isPasswordReused',
    ]),
