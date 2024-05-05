@@ -326,7 +326,7 @@
      'user',
      'isPasswordReused',
    ]),
-+  createIfNotFoundAndLogin: callbackify(AuthenticationManager.createIfNotFoundAndLogin),
++  createIfNotFoundAndLogin: AuthenticationManager.createIfNotFoundAndLogin,
    setUserPassword: callbackify(AuthenticationManager.setUserPassword),
    checkRounds: callbackify(AuthenticationManager.checkRounds),
    hashPassword: callbackify(AuthenticationManager.hashPassword),
