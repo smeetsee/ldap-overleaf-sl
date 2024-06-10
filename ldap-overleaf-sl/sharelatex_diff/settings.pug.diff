@@ -20,7 +20,7 @@
 +						.account-settings(ng-controller="AccountSettingsController", ng-cloak)
  		
  block vars
- 	- bootstrap5EnabledPage = true
+ 	- bootstrap5PageStatus = 'enabled' // One of 'disabled', 'enabled', and 'queryStringOnly'
 
 -block append meta
 -	meta(name="ol-hasPassword" data-type="boolean" content=hasPassword)
